@@ -3,24 +3,22 @@
 #include <stdlib.h>
 int main()
 {
-	int i = 0, a = 0, num = 0;
+	int i = 0;
+	int num = 0;
+	int sum = 0;
+	int ret =1 ;
 	scanf("%d", &num);
-	for (i = 2; i < num; i++)
+	for (i = 1; i <=num; i++)
 	{
-		if (num%i == 0)
+		ret = 1;
+		int j =0;
+		for (j = 1; j <= i; j++)
 		{
-			a++;
+			ret *= j;
 		}
+		sum += ret;
 	}
-	if (a == 0)
-	{
-		printf("ÊÇ");
-	}
-	else
-	{ 
-		printf("·ñ");
-	}
+	printf("%d", sum);
 	system("pause");
 	return 0;
-	
 }
