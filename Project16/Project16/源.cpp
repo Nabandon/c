@@ -26,7 +26,9 @@ int prime(int num)
 		printf("%d是素数", num);
 	}
 	else 
-	{ printf("%d不是素数", num); }
+	{ 
+		printf("%d不是素数", num); 
+	}
 	system("pause");
 	return 0;
 }
