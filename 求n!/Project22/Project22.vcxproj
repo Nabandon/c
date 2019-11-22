@@ -11,8 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F5E6E8D7-A42C-4EA4-ADD4-992044AC7E6A}</ProjectGuid>
+    <ProjectGuid>{6560D533-4D98-496E-A06B-CF58662BBA6F}</ProjectGuid>
     <RootNamespace>Project22</RootNamespace>
+    <ProjectName>求n!</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
