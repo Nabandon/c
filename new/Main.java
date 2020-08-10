@@ -4,60 +4,42 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] ints={{2,1,4},{4,1,6}};
-        int c=5;
-//        int[] arr=new int[1001];
-//        for(int i=0;i<10;i++){
-//            arr[i]-=i;
-//        }
-//        for(int i=0;i<10;i++){
-//            System.out.println(arr[i]);
-//        }
- //   System.out.println(minCarCount(ints,c));
-    }
-    public int maxLevel (int x, int level, int[][] tasks) {
-        // write code here
-        if(x==0){
-            return level;
-        }
-        Arrays.sort(tasks,(Comparator.comparingInt(o -> o[1])));
+        int[][] arr= {{1,1,1,1},{1,1,1,1},{1,1,1,1},
+                {1,1,1,1},{1,1,1,1},{1,1,1,1}};
+        System.out.println(countWays(arr,6,4));
 
+    }
+    public static int countWays(int[][] map, int x, int y) {
+        // write code here
+        int[][] res=new int[x][y];
         for(int i=0;i<x;i++){
-            for(int j=tasks.length-1;j>=0;j--){
-                if(level>=tasks[j][0]){
-                    level+=tasks[j][1];
-                    break;
+            if(map[i][0]==1){
+                res[i][0]=1;
+            }else{
+                break;
+            }
+        }
+        for(int j=0;j<y;j++){
+            if(map[0][j]==1){
+                res[0][j]=1;
+            }else{
+                break;
+            }
+        }
+        for(int i=1;i<x;i++){
+            for(int j=1;j<y;j++){
+                if(map[i][j]!=1){
+                    map[i][j]=0;
                 }
             }
         }
-            return level;
-    }
-
-
-    public static int minCarCount (int[][] trips, int capacity) {
-        // write code here
-        int len=trips.length;
-        if(len==0){
-            return  0;
-        }
-        int[] arr=new int[1001];
-        for(int i=0;i<len;i++){
-            int r=trips[i][0];
-            int s=trips[i][1];
-            int x=trips[i][2];
-            arr[s]+=r;
-            arr[x]=(arr[x]-r<=0?0:(arr[x]-r));
-        }
-        int res=0;
-        for(int j=0;j<1001;j++){
-            int r=arr[j];
-            if(r>(capacity*res)){
-                res+=(r/capacity);
-                if(r%capacity!=0){
-                    res+=1;
+        for(int i=1;i<x;i++){
+            for(int j=1;j<y;j++){
+                if(map[i][j]==1){
+                    res[i][j]=res[i-1][j]+res[i][j-1];
                 }
             }
         }
-        return res;
+        return res[x-1][y-1]%1000000007;
     }
 }
