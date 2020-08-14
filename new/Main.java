@@ -1,45 +1,51 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.sql.SQLOutput;
+import java.sql.Statement;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] arr= {{1,1,1,1},{1,1,1,1},{1,1,1,1},
-                {1,1,1,1},{1,1,1,1},{1,1,1,1}};
-        System.out.println(countWays(arr,6,4));
-
+       int[] arr={};
+       int[][] arr1={{1,3,1},
+                     {1,5,1},
+                     {4,2,1}};
+        System.out.println(maxValue(arr1));
+       // System.out.println(h(arr,1));
+       // System.out.println(h(arr,6));
     }
-    public static int countWays(int[][] map, int x, int y) {
-        // write code here
-        int[][] res=new int[x][y];
-        for(int i=0;i<x;i++){
-            if(map[i][0]==1){
-                res[i][0]=1;
+    public static int maxValue(int[][] grid) {
+        int m=grid.length;
+        if(m<1){
+            return 0;
+        }
+        int n=grid[0].length;
+        for(int i=1;i<m;i++){
+            grid[i][0]+=grid[i-1][0];
+        }
+        for(int i=1;i<n;i++){
+            grid[0][i]+=grid[0][i-1];
+        }
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                int y=grid[i][j]+grid[i-1][j];
+                int x=grid[i][j]+grid[i][j-1];
+                grid[i][j]=Math.max(x,y);
+            }
+        }
+        return grid[m-1][n-1];
+    }
+    private static int h(int[] arr,int c){
+        int left=0;
+        int right=arr.length-1;
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(arr[mid]<c){
+                left=mid+1;
+            }else if(arr[mid]>c){
+                right=mid-1;
             }else{
-                break;
+                return mid;
             }
         }
-        for(int j=0;j<y;j++){
-            if(map[0][j]==1){
-                res[0][j]=1;
-            }else{
-                break;
-            }
-        }
-        for(int i=1;i<x;i++){
-            for(int j=1;j<y;j++){
-                if(map[i][j]!=1){
-                    map[i][j]=0;
-                }
-            }
-        }
-        for(int i=1;i<x;i++){
-            for(int j=1;j<y;j++){
-                if(map[i][j]==1){
-                    res[i][j]=res[i-1][j]+res[i][j-1];
-                }
-            }
-        }
-        return res[x-1][y-1]%1000000007;
+        return  -1;
     }
 }
