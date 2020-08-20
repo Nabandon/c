@@ -3,27 +3,79 @@ import java.sql.Statement;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args){
-        Scanner sca=new Scanner(System.in);
-        int n=sca.nextInt();
-        int a=sca.nextInt();
-        int b=sca.nextInt();
-        int[][] arr=new int[n][2];
-        for(int i=0;i<n;i++){
-            arr[i][0]=sca.nextInt();
-            arr[i][1]=sca.nextInt();
+    public static void main(String[] args) {
+        String str="aaabcdabefddd";
+        System.out.println(h(str));
+    }
+    private static String h(String str){
+        if(str.trim().length()<1){
+            return null;
         }
-        int res=0;
-        Arrays.sort(arr,(o1,o2) -> o2[0]-o1[0]);
-        for(int i=0;i<n;i++){
-            int aa=arr[i][0];
-            int bb=arr[i][1];
-            if(aa>bb){
-                if(a>0){
-                    res+=aa;
-                }
+        int index=0;
+        int len=0;
+        for(int i=0;i<str.length()-1;i++){
+            HashSet<Character> set=new HashSet<>();
+            int ti=i;
+
+            int tlen=0;
+            while (ti<str.length()-1 && !set.contains(str.charAt(ti)) ){
+                set.add(str.charAt(ti));
+                tlen++;
+                ti++;
+            }
+            if(tlen>len){
+                len=tlen;
+                index=i;
             }
         }
+        return  str.substring(index,index+len);
+    }
+}
+
+//    public static void main(String[] args){
+//        Scanner sca=new Scanner(System.in);
+//        Stack<String> stack=new Stack<>();
+//
+//
+//        String str="";
+//        while (sca.hasNext()){
+//            String t=sca.next();
+//            if("undo".equals(t) && !stack.empty()){
+//                str=stack.pop();
+//            }else if("redo".equals(t) && str!=""){
+//                stack.push(str);
+//
+//            }else{
+//                stack.push(t);
+//
+//            }
+//        }
+//        StringBuilder sb=new StringBuilder();
+//
+//        while (!stack.isEmpty()){
+//            sb.insert(0," "+stack.pop());
+//        }
+//        System.out.println(sb.toString().trim());
+
+//        int n=sca.nextInt();
+//        int a=sca.nextInt();
+//        int b=sca.nextInt();
+//        int[][] arr=new int[n][2];
+//        for(int i=0;i<n;i++){
+//            arr[i][0]=sca.nextInt();
+//            arr[i][1]=sca.nextInt();
+//        }
+//        int res=0;
+//        Arrays.sort(arr,(o1,o2) -> o2[0]-o1[0]);
+//        for(int i=0;i<n;i++){
+//            int aa=arr[i][0];
+//            int bb=arr[i][1];
+//            if(aa>bb){
+//                if(a>0){
+//                    res+=aa;
+//                }
+//            }
+//        }
 
 //
 //            int n=scanner.nextInt();
@@ -95,5 +147,5 @@ public class Main {
 //
 //        }
 //        return true;
-    }
-}
+//    }
+//}
