@@ -4,33 +4,61 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String str="aaabcdabefddd";
-        System.out.println(h(str));
-    }
-    private static String h(String str){
-        if(str.trim().length()<1){
-            return null;
-        }
-        int index=0;
-        int len=0;
-        for(int i=0;i<str.length()-1;i++){
-            HashSet<Character> set=new HashSet<>();
-            int ti=i;
 
-            int tlen=0;
-            while (ti<str.length()-1 && !set.contains(str.charAt(ti)) ){
-                set.add(str.charAt(ti));
-                tlen++;
-                ti++;
-            }
-            if(tlen>len){
-                len=tlen;
-                index=i;
+        Scanner sca = new Scanner(System.in);
+        int n = sca.nextInt();
+        int m = sca.nextInt();
+        List<Integer> arrn=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            arrn.add(i+1);
+        }
+        for(int j=0;j<m;j++){
+            int tm=sca.nextInt();
+            h(arrn,tm);
+        }
+        for (int i=0;i<n;i++){
+            System.out.println(arrn.get(i));
+        }
+    }
+    private static void h(List<Integer> arr,int t){
+        if(t==1){
+            arr.add(arr.get(0));
+            arr.remove(0);
+        }else if(t==2){
+            for(int i=0;i<arr.size();i+=2){
+                int t1=arr.get(i);
+                int t2=arr.get(i+1);
+                arr.set(i,t2);
+                arr.set(i+1,t1);
             }
         }
-        return  str.substring(index,index+len);
     }
 }
+//        int res=0;
+//        for(int i=0;i<n;i++){
+//            String str=sca.next();
+//            if(h(str)==true){
+//                res++;
+//            }
+//
+//        }
+//        System.out.println(res);
+//    }
+//    private static boolean h(String str){
+//        if(str==null || str.length()>10 || str.length()<1){
+//            return false;
+//        }
+//        for(int i=0;i<str.length();i++){
+//            char c=str.charAt(i);
+//            if(c<='Z'&&c>='A' || c<='z'&&c>='a'){
+//                continue;
+//            }else{
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//}
 
 //    public static void main(String[] args){
 //        Scanner sca=new Scanner(System.in);
