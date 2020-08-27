@@ -1,39 +1,159 @@
 import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.util.*;
-
+class Int{
+     int x;
+     int y;
+     public  Int(int x,int y){
+         this.x=x;
+         this.y=y;
+     }
+}
 public class Main {
     public static void main(String[] args) {
-
         Scanner sca = new Scanner(System.in);
-        int n = sca.nextInt();
-        int m = sca.nextInt();
-        List<Integer> arrn=new ArrayList<>();
-        for(int i=0;i<n;i++){
-            arrn.add(i+1);
-        }
-        for(int j=0;j<m;j++){
-            int tm=sca.nextInt();
-            h(arrn,tm);
-        }
-        for (int i=0;i<n;i++){
-            System.out.println(arrn.get(i));
-        }
-    }
-    private static void h(List<Integer> arr,int t){
-        if(t==1){
-            arr.add(arr.get(0));
-            arr.remove(0);
-        }else if(t==2){
-            for(int i=0;i<arr.size();i+=2){
-                int t1=arr.get(i);
-                int t2=arr.get(i+1);
-                arr.set(i,t2);
-                arr.set(i+1,t1);
+        ArrayList<Integer> list=new ArrayList<>();
+            int l=sca.nextInt();
+
+         String c=sca.next();
+        String c2=sca.next();
+            for(int i=0;i<c.length();i++){
+                char c1=c.charAt(i);
+                if(c1<='9' && c1>='0'){
+                    list.add(c1-'0');
+                }
+            }
+
+
+        for(int i=0;i<c2.length();i++){
+            char c1=c2.charAt(i);
+            if(c1<='9' && c1>='0'){
+                list.add(c1-'0');
             }
         }
+            int len=list.size()/2;
+        int[] w=new int[len];
+
+        for(int i=0;i<len;i++){
+            w[i]=list.get(i);
+            list.remove(i);
+        }
+        int[] v=new int[len];
+        for(int i=0;i<list.size();i++){
+            v[i]=list.get(i);
+        }
+            System.out.println(h(l,w,v));
+        }
+
+    private static int h(int l,int[] w,int[] v){
+        int num=w.length;
+        if(num<1 || l<1){
+            return 0;
+        }
+        int[] maxV=new int[l+1];
+        for(int i=1;i<=num;i++){
+            for(int j=l;j>0;j--){
+                if(w[i-1]<=j){
+                    int vt=maxV[j-w[i-1]]+v[i-1];
+                    maxV[j]=Math.max(vt,maxV[j]);
+                }
+            }
+        }
+        return maxV[l];
     }
 }
+
+//        Scanner scanner=new Scanner(System.in);
+//        HashMap<Character,Int> map=new HashMap<>();
+//        map.put('0',new Int(0,0));
+//        map.put('1',new Int(0,1));
+//        map.put('C',new Int(0,2));
+//        map.put('H',new Int(0,3));
+//        map.put('A',new Int(0,4));
+//        map.put('9',new Int(1,0));
+//        map.put('E',new Int(1,1));
+//        map.put('7',new Int(1,2));
+//        map.put('B',new Int(1,3));
+//        map.put('I',new Int(1,4));
+//        map.put('K',new Int(2,0));
+//        map.put('D',new Int(2,1));
+//        map.put('4',new Int(2,2));
+//        map.put('8',new Int(2,3));
+//        map.put('J',new Int(2,4));
+//        map.put('6',new Int(3,0));
+//        map.put('5',new Int(3,1));
+//        map.put('F',new Int(3,2));
+//        map.put('G',new Int(3,3));
+//        map.put('O',new Int(3,4));
+//        map.put('L',new Int(4,0));
+//        map.put('N',new Int(4,1));
+//        map.put('M',new Int(4,2));
+//        map.put('2',new Int(4,3));
+//        map.put('3',new Int(4,4));
+//        while (scanner.hasNext()){
+//            String str=scanner.next();
+//            boolean f=true;
+//            char c=str.charAt(0);
+//            Int it=map.get(c);
+//            int xt=it.x;
+//            int yt=it.y;
+//            for(int i=1;i<str.length();i++){
+//                char ct=str.charAt(i);
+//                Int itt=map.get(ct);
+//                int x=itt.x;
+//                int y=itt.y;
+//                if(x==xt && y==yt-1 || x==xt && y==yt+1 || x==xt-1 && y==yt || x==xt+1 && y==yt){
+//                    xt=x;
+//                    yt=y;
+//                }else {
+//                    f=false;
+//                    break;
+//                }
+//            }
+//            if(f){
+//                System.out.println("Y");
+//            }else {
+//                System.out.println("N");
+//            }
+//        }
+//
+//    }
+//}
+
+//        String str=sca.nextLine();
+//        StringBuilder sb=new StringBuilder(str);
+//        if(str==null || str.length()<1){
+//            return;
+//        }
+//        if(str.charAt(0)=='n'){
+//            sb.setCharAt(0,'N');
+//            System.out.println(sb.toString());
+//            return;
+//        }
+//
+//        StringBuilder stringBuilder=new StringBuilder();
+//        for(int i=0;i<str.length();i++){
+//            if(i==0 ){
+//                String t=str.charAt(i)+"";
+//                stringBuilder.append(t.toUpperCase());
+//                i++;
+//            }
+//            if(str.charAt(i)!='n'){
+//                while (i<str.length() && str.charAt(i)!='n'){
+//                    stringBuilder.append(str.charAt(i));
+//                    i++;
+//                }
+//            }
+//            System.out.println(stringBuilder.toString());
+//            if(i<str.length()){
+//                stringBuilder=new StringBuilder();
+//                stringBuilder.append((str.charAt(i)+"").toUpperCase());
+//            }
+//        }
+//
+//    }
+//}
+
 //        int res=0;
 //        for(int i=0;i<n;i++){
 //            String str=sca.next();
