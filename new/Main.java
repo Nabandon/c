@@ -1,67 +1,155 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
+import javax.sql.ConnectionPoolDataSource;
+import java.math.BigInteger;
+import java.sql.Connection;
 import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.util.*;
-class Int{
-     int x;
-     int y;
-     public  Int(int x,int y){
-         this.x=x;
-         this.y=y;
-     }
-}
+
 public class Main {
+   
     public static void main(String[] args) {
-        Scanner sca = new Scanner(System.in);
-        ArrayList<Integer> list=new ArrayList<>();
-            int l=sca.nextInt();
 
-         String c=sca.next();
-        String c2=sca.next();
-            for(int i=0;i<c.length();i++){
-                char c1=c.charAt(i);
-                if(c1<='9' && c1>='0'){
-                    list.add(c1-'0');
+        Scanner sca=new Scanner(System.in);
+        int t=sca.nextInt();
+        for(int i=0;i<t;i++){
+            ArrayList<Integer> list=new ArrayList<>();
+            int n=sca.nextInt();
+            int m=sca.nextInt();
+            int[] arr=new int[n+1];
+            for(int j=0;j<m-1;j++){
+                int k=sca.nextInt();
+                for(int a=0;a<k;a++){
+                    int l=sca.nextInt();
+                    int r=sca.nextInt();
+                    for(;l<=r;l++){
+                        arr[l]++;
+                    }
                 }
             }
-
-
-        for(int i=0;i<c2.length();i++){
-            char c1=c2.charAt(i);
-            if(c1<='9' && c1>='0'){
-                list.add(c1-'0');
-            }
-        }
-            int len=list.size()/2;
-        int[] w=new int[len];
-
-        for(int i=0;i<len;i++){
-            w[i]=list.get(i);
-            list.remove(i);
-        }
-        int[] v=new int[len];
-        for(int i=0;i<list.size();i++){
-            v[i]=list.get(i);
-        }
-            System.out.println(h(l,w,v));
-        }
-
-    private static int h(int l,int[] w,int[] v){
-        int num=w.length;
-        if(num<1 || l<1){
-            return 0;
-        }
-        int[] maxV=new int[l+1];
-        for(int i=1;i<=num;i++){
-            for(int j=l;j>0;j--){
-                if(w[i-1]<=j){
-                    int vt=maxV[j-w[i-1]]+v[i-1];
-                    maxV[j]=Math.max(vt,maxV[j]);
+            int k=sca.nextInt();
+            for(int a=0;a<k;a++){
+                int l=sca.nextInt();
+                int r=sca.nextInt();
+                for(;l<=r;l++){
+                    arr[l]++;
+                    if(arr[l]==m){
+                        list.add(l);
+                    }
                 }
             }
+            Collections.sort(list);
+            System.out.println(list.size());
+            for(int i2=0;i2<list.size();i2++){
+                System.out.print(list.get(i2)+" ");
+            }
+            System.out.println();
         }
-        return maxV[l];
     }
 }
+
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner sca=new Scanner(System.in);
+//        int n=sca.nextInt();
+//        int m=sca.nextInt();
+//
+//    }
+//}
+//        Scanner sca=new Scanner(System.in);
+//        int t=sca.nextInt();
+//        for(int i=0;i<t;i++){
+//            int n=sca.nextInt();
+//            int m=sca.nextInt();
+//            int[] arr=new int[n+1];
+//            for(int j=0;j<m;j++){
+//                int k=sca.nextInt();
+//                for(int a=0;a<k;a++){
+//                    int l=sca.nextInt();
+//                    int r=sca.nextInt();
+//                    for(;l<=r;l++){
+//                        arr[l]++;
+//                    }
+//                }
+//            }
+//
+//            ArrayList<Integer> list=new ArrayList<>();
+//            for(int i1=0;i1<=n;i1++){
+//                if(arr[i1]==m){
+//                    list.add(i1);
+//                }
+//            }
+//            System.out.println(list.size());
+//          //  Collections.sort(list);
+//            for(int i2=0;i2<list.size();i2++){
+//                System.out.print(list.get(i2)+" ");
+//            }
+//            System.out.println();
+//        }
+//    }
+//}
+       // 1
+//public class Main {
+//    public static void main(String[] args) {
+//      Scanner sca=new Scanner(System.in);
+//      int n=sca.nextInt();
+//      int[] arr=new int[n];
+//      boolean f=false;
+//      for(int i=0;i<n;i++){
+//          arr[i]=sca.nextInt();
+//          if(arr[i]==0){
+//              f=true;
+//          }
+//      }
+//      if (!f || n<4 ){
+//          System.out.println(-1);
+//          return;
+//      }
+//
+//    }
+//
+// }
+//        String[] a={"nice","try","do"};
+//        String[] res= quick_sort(a);
+//        for(int i=0;i<res.length;i++){
+//            System.out.println(res[i]);
+//        }
+//    }
+//    public static String[] quick_sort (String[] array) {
+//        // write code here
+//        q(array,0,array.length-1);
+//        return array;
+//    }
+//    private static void q(String[] arr, int left, int right){
+//        if(left>=right){
+//            return ;
+//        }
+//        int mid=h(arr,left,right);
+//        q(arr,left,mid-1);
+//        q(arr,mid+1,right);
+//    }
+//    private static int h(String[] arr, int left, int right){
+//        int start=left;
+//        int end=right;
+//        while(start<end){
+//            while(start<end && arr[start].compareTo(arr[right])<0){
+//                start++;
+//            }
+//            while(start<end && arr[end].compareTo(arr[right])>0){
+//                end--;
+//            }
+//            String t=arr[start];
+//            arr[start]=arr[end];
+//            arr[end]=t;
+//        }
+//        String t=arr[start];
+//        arr[start]=arr[right];
+//        arr[right]=t;
+//        return start;
+//    }
+//
+//}
 
 //        Scanner scanner=new Scanner(System.in);
 //        HashMap<Character,Int> map=new HashMap<>();
