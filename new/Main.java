@@ -1,53 +1,126 @@
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import javax.sql.ConnectionPoolDataSource;
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.util.*;
 
-public class Main {
-   
-    public static void main(String[] args) {
-
-        Scanner sca=new Scanner(System.in);
-        int t=sca.nextInt();
-        for(int i=0;i<t;i++){
-            ArrayList<Integer> list=new ArrayList<>();
-            int n=sca.nextInt();
-            int m=sca.nextInt();
-            int[] arr=new int[n+1];
-            for(int j=0;j<m-1;j++){
-                int k=sca.nextInt();
-                for(int a=0;a<k;a++){
-                    int l=sca.nextInt();
-                    int r=sca.nextInt();
-                    for(;l<=r;l++){
-                        arr[l]++;
-                    }
-                }
-            }
-            int k=sca.nextInt();
-            for(int a=0;a<k;a++){
-                int l=sca.nextInt();
-                int r=sca.nextInt();
-                for(;l<=r;l++){
-                    arr[l]++;
-                    if(arr[l]==m){
-                        list.add(l);
-                    }
-                }
-            }
-            Collections.sort(list);
-            System.out.println(list.size());
-            for(int i2=0;i2<list.size();i2++){
-                System.out.print(list.get(i2)+" ");
-            }
-            System.out.println();
-        }
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val){
+        this.val=val;
     }
 }
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sca = new Scanner(System.in);
+        String[] na=sca.nextLine().split(" ");
+        String[] nv=sca.nextLine().split(" ");
+        int n=sca.nextInt();
+        ArrayList<String> l1=new ArrayList<>();
+        ArrayList<String> l2=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            String nta=sca.next();
+            String ntv=sca.next();
+            if(!l1.contains(nta)){
+                l1.add(nta);
+            }
+            if(!l2.contains(ntv)){
+                l2.add(ntv);
+            }
+        }
+        System.out.println(Math.min(l1.size(),l2.size()));
+    }
+}
+//    public static int numberofprize (int a, int b, int c) {
+//        // write code here
+//        if(a==b && b==c ){
+//            return a;
+//        }
+////        int maxt=Math.max(a,b);
+////        int midt=Math.min(a,b);
+////         a=Math.max(maxt,c);
+////         if(a>maxt && maxt>=c){
+////             b=maxt;
+////         }
+//         c=Math.min(midt,c);
+//         if(a==b && b==c+1){
+//             return c;
+//         }else if(b==c && a==b+1){
+//             return c;
+//         }else if(a==b+1 && b==c+1){
+//             return c;
+//         } else {
+//             int t=a-c;
+//             while (a-t>b){
+//                 if(t%2==0){
+//                     a-=t;
+//                     c+=t/2;
+//                 }else {
+//                     a=a-t+1;
+//                     c+=t/2;
+//                 }
+//                t=a-c;
+//             }
+//
+//             while (a>=b+2){
+//                 a-=2;
+//                 c++;
+//             }
+//
+//             while (a>=b && b>c+1){
+//                 a--;
+//                 b--;
+//                 c++;
+//             }
+//         }
+//        return numberofprize(a,b,c);
+//    }
+//}
+
+//        int t=sca.nextInt();
+//        for(int i=0;i<t;i++){
+//            ArrayList<Integer> list=new ArrayList<>();
+//            int n=sca.nextInt();
+//            int m=sca.nextInt();
+//            int[] arr=new int[n+1];
+//            for(int j=0;j<m-1;j++){
+//                int k=sca.nextInt();
+//                for(int a=0;a<k;a++){
+//                    int l=sca.nextInt();
+//                    int r=sca.nextInt();
+//                    for(;l<=r;l++){
+//                        arr[l]++;
+//                    }
+//                }
+//            }
+//            int k=sca.nextInt();
+//            for(int a=0;a<k;a++){
+//                int l=sca.nextInt();
+//                int r=sca.nextInt();
+//                for(;l<=r;l++){
+//                    arr[l]++;
+//                    if(arr[l]==m){
+//                        list.add(l);
+//                    }
+//                }
+//            }
+//            Collections.sort(list);
+//            System.out.println(list.size());
+//            for(int i2=0;i2<list.size();i2++){
+//                System.out.print(list.get(i2)+" ");
+//            }
+//            System.out.println();
+//        }
+//    }
+//}
 
 //public class Main {
 //    public static void main(String[] args) {
